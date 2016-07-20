@@ -2,9 +2,11 @@ package com.kk.api.test;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 import com.kk.api.model.User;
+import com.kk.api.param.UserParam;
 import com.kk.api.service.IUserAdapter;
 
 import java.net.MalformedURLException;
+import java.util.List;
 
 
 public class HessianClient {
@@ -16,5 +18,11 @@ public class HessianClient {
         IUserAdapter service = (IUserAdapter) factory.create(IUserAdapter.class, url);//创建IService接口的实例对象
         User user = service.getUser(195);//调用Hessian服务器端的ServiceImpl类中的getUser方法来获取一个User对象
         System.out.println(user);
+
+        UserParam param = new UserParam();
+        param.setId(195);
+        param.setRealname("孔");
+        List<User> userList = service.getUserList(param, 0, 10);
+        System.out.println(userList);
     }
 }

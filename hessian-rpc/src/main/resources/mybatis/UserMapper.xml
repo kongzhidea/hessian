@@ -15,5 +15,18 @@
         from eby_user where id = #{id}
     </select>
 
+    <select id="getUserList" resultType="User">
+        select
+        <include refid="UserColumns"/>
+        from eby_user where 1=1
+        <if test="param.id != 0">
+            and id = #{param.id}
+        </if>
+        <if test="param.realname !='' and param.realname != null">
+            and realname like concat("%",#{param.realname},"%")
+        </if>
+        order by id desc limit #{start}, #{limit}
+    </select>
+
 
 </mapper>
