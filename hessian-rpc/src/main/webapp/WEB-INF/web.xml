@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+    <display-name>Archetype Created Web Application</display-name>
+
+    <!-- 设定Spring的根上下文 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:applicationContext*.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <!-- 配置 HessianServlet，Servlet的名字随便配置，例如这里配置成ServiceServlet-->
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+
+        <!-- 配置接口的具体实现类 -->
+        <init-param>
+            <param-name>api-class</param-name>
+            <param-value>com.kk.api.service.IUserAdapter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>service-class</param-name>
+            <param-value>com.kk.api.adapter.UserAdapter</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- 映射 HessianServlet的访问URL地址-->
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/UserServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
