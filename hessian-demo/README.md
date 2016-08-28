@@ -25,6 +25,6 @@ HessianProxyFactoryBean 客户端集成spring
 * 去前缀，再base64解码
 * 客户端调用, factory.setUser(), factory.setPassword()
 
-#### hessian继承spring-mvc
+#### hessian集成spring-mvc
 * hessian-springmvc
 
