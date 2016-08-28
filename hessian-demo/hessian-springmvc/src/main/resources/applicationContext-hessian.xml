@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+    <!-- 接口的具体实现类 -->
+    <bean id="userAdapter" class="com.kk.adapter.UserAdapter"/>
+
+    <!-- 使用Spring的HessianServie做代理, 暴漏的url为 /userAdapter -->
+    <bean name="/userAdapter" class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <!-- service引用具体的实现实体Bean-->
+        <property name="service" ref="userAdapter"/>
+        <property name="serviceInterface" value="com.kk.api.service.IUserAdapter"/>
+    </bean>
+</beans>
