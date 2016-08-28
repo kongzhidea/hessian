@@ -12,13 +12,13 @@
     <select id="getUser" parameterType="int" resultType="User">
         select
         <include refid="UserColumns"/>
-        from eby_user where id = #{id}
+        from user where id = #{id}
     </select>
 
     <select id="getUserList" resultType="User">
         select
         <include refid="UserColumns"/>
-        from eby_user where 1=1
+        from user where 1=1
         <if test="param.id != 0">
             and id = #{param.id}
         </if>

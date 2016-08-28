@@ -37,4 +37,26 @@
         <url-pattern>/UserServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <!-- 配置 HessianServlet，Servlet的名字随便配置，例如这里配置成ServiceServlet-->
+        <servlet-name>AuthUserServlet</servlet-name>
+        <servlet-class>com.kk.servlet.CustomHessianServlet</servlet-class>
+
+        <!-- 配置接口的具体实现类 -->
+        <init-param>
+            <param-name>api-class</param-name>
+            <param-value>com.kk.api.service.IUserAdapter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>service-class</param-name>
+            <param-value>com.kk.api.adapter.UserAdapter</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- 映射 HessianServlet的访问URL地址-->
+    <servlet-mapping>
+        <servlet-name>AuthUserServlet</servlet-name>
+        <url-pattern>/AuthUserServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
